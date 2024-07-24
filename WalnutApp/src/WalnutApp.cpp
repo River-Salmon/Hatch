@@ -53,6 +53,10 @@ Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 	Walnut::ApplicationSpecification spec;
 	spec.Name = "HELL HATCH";
 
+	//TODO: restart via steam
+
+	//TODO: Steam init
+
 	Walnut::Application* app = new Walnut::Application(spec);
 	app->PushLayer<FriendsLayer>();
 	app->PushLayer<SessionLayer>();
