@@ -8,18 +8,15 @@ class ExampleLayer : public Walnut::Layer
 public:
 	virtual void OnUIRender() override
 	{
-		ImGui::Begin("Hello");
-		ImGui::Button("Button");
+		ImGui::Begin("main");
 		ImGui::End();
-
-		ImGui::ShowDemoWindow();
 	}
 };
 
 Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 {
 	Walnut::ApplicationSpecification spec;
-	spec.Name = "Walnut Example";
+	spec.Name = "HELL HATCH";
 
 	Walnut::Application* app = new Walnut::Application(spec);
 	app->PushLayer<ExampleLayer>();
@@ -28,6 +25,22 @@ Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 		if (ImGui::BeginMenu("File"))
 		{
 			if (ImGui::MenuItem("Exit"))
+			{
+				app->Close();
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Mods"))
+		{
+			if (ImGui::MenuItem("Manage..."))
+			{
+				app->Close();
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Multiplayer"))
+		{
+			if (ImGui::MenuItem("View Friends"))
 			{
 				app->Close();
 			}
