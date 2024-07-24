@@ -1,5 +1,6 @@
 #include "Walnut/Application.h"
 #include "Walnut/EntryPoint.h"
+#include "GameLocator/GameLocator.h"
 
 #include "Walnut/Image.h"
 
@@ -39,6 +40,10 @@ public:
 	virtual void OnUIRender() override
 	{
 		ImGui::Begin("Play");
+		if (ImGui::Button("PLAY", ImVec2(600, 200)))
+		{
+			//Launch Game...
+		}
 		ImGui::End();
 	}
 };
@@ -53,6 +58,9 @@ Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 	app->PushLayer<SessionLayer>();
 	app->PushLayer<LogLayer>();
 	app->PushLayer<PlayLayer>();
+
+	std::unique_ptr<GameLocator> Locator = std::make_unique<GameLocator>();
+
 	app->SetMenubarCallback([app]()
 	{
 		if (ImGui::BeginMenu("File"))
@@ -60,6 +68,14 @@ Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 			if (ImGui::MenuItem("Exit"))
 			{
 				app->Close();
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Games"))
+		{
+			if (ImGui::MenuItem("Manage..."))
+			{
+				app->PushLayer<LocatorLayer>();
 			}
 			ImGui::EndMenu();
 		}
