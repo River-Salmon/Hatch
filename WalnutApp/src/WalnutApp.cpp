@@ -3,12 +3,42 @@
 
 #include "Walnut/Image.h"
 
-class ExampleLayer : public Walnut::Layer
+class FriendsLayer : public Walnut::Layer
 {
 public:
 	virtual void OnUIRender() override
 	{
-		ImGui::Begin("main");
+		ImGui::Begin("Friends");
+		ImGui::End();
+	}
+};
+
+class SessionLayer : public Walnut::Layer
+{
+public:
+	virtual void OnUIRender() override
+	{
+		ImGui::Begin("Session");
+		ImGui::End();
+	}
+};
+
+class LogLayer : public Walnut::Layer
+{
+public:
+	virtual void OnUIRender() override
+	{
+		ImGui::Begin("Log");
+		ImGui::End();
+	}
+};
+
+class PlayLayer : public Walnut::Layer
+{
+public:
+	virtual void OnUIRender() override
+	{
+		ImGui::Begin("Play");
 		ImGui::End();
 	}
 };
@@ -19,7 +49,10 @@ Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 	spec.Name = "HELL HATCH";
 
 	Walnut::Application* app = new Walnut::Application(spec);
-	app->PushLayer<ExampleLayer>();
+	app->PushLayer<FriendsLayer>();
+	app->PushLayer<SessionLayer>();
+	app->PushLayer<LogLayer>();
+	app->PushLayer<PlayLayer>();
 	app->SetMenubarCallback([app]()
 	{
 		if (ImGui::BeginMenu("File"))
