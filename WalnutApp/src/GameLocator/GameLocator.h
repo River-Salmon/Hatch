@@ -31,12 +31,6 @@ public:
 	}
 };
 
-enum class ESupportedGames : int
-{
-	GZDoom,
-	Odamex
-};
-
 class GameLocator
 {
 public:
@@ -47,15 +41,11 @@ public:
 	}
 	GameLocator(const GameLocator& Other) = delete;
 
-	void AutoDetect();
-	void ManuallyAddGame(ESupportedGames Game, const std::filesystem::path& GamePath);
-
 private:
 	//takes the path found by the file picker UI and applies it to the game settings
 	void HandleGameFoundSignal(std::filesystem::path NewGamePath)
 	{
 		GamePath = NewGamePath;
-		std::string WeGotHere;
 	}
 
 
